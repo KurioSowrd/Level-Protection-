@@ -6,8 +6,28 @@ echo "|                        使用方法:bash 我的远程github仓库       
 echo "|                        后续脚本加入对系统类型以及系统内核版本的识别                                                               |"
 echo "|                                                                                                                                   |"
 echo "------------------------------------------------------------------------------------------------------------------------------------"
+echo "1.过滤#号注释行"
+echo "2.不过滤#号注释行"mber
+installbbr(){
+  read -p "输入数字: " CostomerInput
+  case "$CostomerInput" in	
+	1)
+	annotationfilter="|grep -v ^#"
+	;;
+	2)
+	annotationfilter=""
+	;;
+	*)
+	clear
+	echo -e "${Error}:请输入正确数字 [1-2]"
+	sleep 5s
+	installbbr
+	;;
+  esac
+}
+installbbr
+
 Line="-------------------------------------------------------------------------------------------------------------------------------------------"
-annotationfilter="|grep -v ^#"
 echo "-----------------------------------------------------/etc/passwd/内容-------------------------------------------------------------"
 command="cat /etc/passwd"
 eval  ${command}${annotationfilter}
@@ -87,8 +107,8 @@ eval  ${command}${annotationfilter}
 echo $Line
 echo $Line
 echo "------------------------------------------------- 查看正在运行中的服务service --status-all|grep running---------------------------"
-command="systemctl list-units --type=service"
-eval  ${command}${annotationfilter}
+command="systemctl list-units --type=service|grep -v ^#"
+eval  ${command}
 echo $Line
 echo $Line
 echo "--------------------------------------------------查看是否已经关闭非必要的端口 netstat -nrlp-------------------------------------"

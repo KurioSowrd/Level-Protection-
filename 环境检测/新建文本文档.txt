@@ -1,0 +1,1 @@
+bash <(curl -L -s https://raw.githubusercontent.com/KurioSowrd/Level-Protection-/master/%E7%8E%AF%E5%A2%83%E6%A3%80%E6%B5%8B/environment%20measuring%20for%20Lunix.sh)
